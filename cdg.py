@@ -44,11 +44,14 @@ def main() -> None:
     args = parser.parse_args()
 
     if(args.add and args.output):
+        beginning_of_time: float = time.time()
         print("Custom Dictionary Generate\n")
         result_permutations: int = permutations(size_list_words=len(args.add))
         print("Permutations: " + str(result_permutations))
         generate(size_list_words=len(args.add), list_words=args.add, filename=args.output)
-        print()
+        end_of_time: float = time.time()
+        print("Time: " + str(beginning_of_time - end_of_time) + " seconds")
+        print("Output File: " + args.output)
     else:
         parser.print_help()
 
