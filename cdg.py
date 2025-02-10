@@ -1,12 +1,18 @@
 import argparse
 
-def generate(size_list_words: int, list_words: list[str]) -> None:
+def output(filename: str, word: str) -> None:
+    with open(filename, 'a') as file:
+        file.write(word + "\n")
+    file.close()
+
+def generate(size_list_words: int, list_words: list[str], filename: str) -> None:
     temp_list: list[int] = []
 
     for index in range(0, size_list_words):
         temp_list.append(0)
 
-    print("".join(word for word in list_words))
+    word: str = "".join(word for word in list_words)
+    output(filename=filename, word=word)
 
     index: int = 0
     while index < size_list_words:
@@ -16,7 +22,9 @@ def generate(size_list_words: int, list_words: list[str]) -> None:
             else:
                 list_words[temp_list[index]], list_words[index] = list_words[index], list_words[temp_list[index]]
 
-            print("".join(word for word in list_words))
+            word: str = "".join(word for word in list_words)
+            output(filename=filename, word=word)
+
             temp_list[index] += 1
             index = 0
         else:
@@ -31,7 +39,7 @@ def main() -> None:
     args = parser.parse_args()
 
     if(args.add and args.output):
-        generate(len(args.add), args.add)
+        generate(size_list_words=len(args.add), list_words=args.add, filename=args.output)
     else:
         parser.print_help()
 

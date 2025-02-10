@@ -111,3 +111,6 @@ __pypackages__/
 
 # VS Code
 .vscode/
+
+# TXT Files
+*.txt
