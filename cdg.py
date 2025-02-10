@@ -1,4 +1,9 @@
 import argparse
+import math
+import time
+
+def permutations(size_list_words: int) -> int:
+    return math.factorial(size_list_words)
 
 def output(filename: str, word: str) -> None:
     with open(filename, 'a') as file:
@@ -39,7 +44,11 @@ def main() -> None:
     args = parser.parse_args()
 
     if(args.add and args.output):
+        print("Custom Dictionary Generate\n")
+        result_permutations: int = permutations(size_list_words=len(args.add))
+        print("Permutations: " + str(result_permutations))
         generate(size_list_words=len(args.add), list_words=args.add, filename=args.output)
+        print()
     else:
         parser.print_help()
 
